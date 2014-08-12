@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Block : MonoBehaviour {
+public class Block {
 	// Base class for all blocks (locations) on the map
 
 	// (x,y) coordinates for the location of this block on the map.
