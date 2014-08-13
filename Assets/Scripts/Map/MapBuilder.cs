@@ -6,21 +6,28 @@ public class MapBuilder : MonoBehaviour {
 	// According to some rules, we'll add different block types to the map
 	// We'll also save the map's data to a permanent place
 
-	public int width  = 10;
-	public int height = 10;
+	public int width  = 5;
+	public int height = 5;
 
 	public int blockTypes = 8;
+	public Block beach;
+	public Block desert;
+	public Block field;
+	public Block forest;
+	public Block mountain;
+	public Block ocean;
+	public Block pond;
+	public Block woods;
 
 	public Map map;
 
 	// Use this for initialization
 	void Start () {
-		map = new Map(width,height);
-		for(int i=0; i<10; i++)
-		{ for(int j=0; j<10; j++) 
+
+		for(int i=0; i<width; i++)
+		{ for(int j=0; j<height; j++) 
 			{
 				Block thisBlock = getNextBlock();
-				Debug.Log(thisBlock);
 				map.addBlock(i,j,thisBlock);
 			}
 		}
@@ -35,38 +42,39 @@ public class MapBuilder : MonoBehaviour {
 	// Generates the next block according to the rules
 	// For now, just randomly picks a block type
 	{
-		Block block = new Block();
+		Block block;
 		int type = Mathf.FloorToInt(8*Random.value);
 		switch(type)
 		{
 		case 0:
-			block = new Beach();
+			block = beach;
 			break;
 		case 1:
-			block = new Desert();
+			block = desert;
 			break;
 		case 2:
-			block = new Field();
+			block = field;
 			break;
 		case 3:
-			block = new Forest();
+			block = forest;
 			break;
 		case 4:
-			block = new Mountain();
+			block = mountain;
 			break;
 		case 5:
-			block = new Ocean();
+			block = ocean;
 			break;
 		case 6:
-			block = new Pond();
+			block = pond;
 			break;
 		case 7:
-			block = new Woods();
+			block = woods;
 			break;
 		default:
-			block = new Beach();
+			block = beach;
 			break;
 		}
+		block = Instantiate(block) as Block;
 		return block;
 
 	}
