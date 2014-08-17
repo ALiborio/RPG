@@ -3,13 +3,10 @@ using System.Collections;
 
 public class Stone : Resource {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	public const string type = "stone";
+
+	public Stone (int min, int max) : base(min,max)
+	{
+
 	}
 }

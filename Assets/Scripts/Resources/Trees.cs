@@ -3,13 +3,11 @@ using System.Collections;
 
 public class Trees : Resource {
 
-	// Use this for initialization
-	void Start () {
-	
+	public const string type = "trees";
+
+	public Trees (int min, int max) : base(min,max)
+	{
+
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }

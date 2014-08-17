@@ -3,13 +3,11 @@ using System.Collections;
 
 public class Oil : Resource {
 
-	// Use this for initialization
-	void Start () {
-	
+	public const string type = "oil";
+
+	public Oil (int min, int max) : base(min,max)
+	{
+
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }
