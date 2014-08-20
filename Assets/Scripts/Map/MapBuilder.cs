@@ -35,7 +35,14 @@ public class MapBuilder : MonoBehaviour {
 				}
 				else
 				{
+					if (i==1 || j == 1 || i ==(width-2) || j==(height-2))
+					{
+						thisBlock = oceanOrBeach();
+					}
+					else
+					{
 					thisBlock = getNextBlock();
+					}
 				}
 				map.addBlock(i,j,thisBlock);
 			}
@@ -47,16 +54,31 @@ public class MapBuilder : MonoBehaviour {
 	
 	}
 
+	Block oceanOrBeach()
+	// Returns an ocean or beach block
+	{
+		int type = Mathf.RoundToInt(Random.value);
+
+		if (type == 1)
+		{
+			return Instantiate(beach) as Block;
+		}
+		else
+		{
+			return Instantiate(ocean) as Block;
+		}
+	}
+
 	Block getNextBlock()
 	// Generates the next block according to the rules
 	// For now, just randomly picks a block type
 	{
 		Block block;
-		int type = Mathf.FloorToInt(7*Random.value);
+		int type = Mathf.FloorToInt(6*Random.value);
 		switch(type)
 		{
 		case 0:
-			block = beach;
+			block = pond;
 			break;
 		case 1:
 			block = desert;
@@ -70,14 +92,8 @@ public class MapBuilder : MonoBehaviour {
 		case 4:
 			block = mountain;
 			break;
-		case 5:
-			block = woods;
-			break;
-		case 6:
-			block = pond;
-			break;
 		default:
-			block = beach;
+			block = woods;
 			break;
 		}
 		block = Instantiate(block) as Block;
