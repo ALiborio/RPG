@@ -25,6 +25,11 @@ public class Block : MonoBehaviour {
 	
 	}
 
+	void OnMouseDown()
+	{
+		Debug.Log(this);
+	}
+
 	public void addResource(Resource res)
 	// Adds a resource to this location
 	{
