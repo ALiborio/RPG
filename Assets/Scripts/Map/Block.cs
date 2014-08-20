@@ -15,19 +15,42 @@ public class Block : MonoBehaviour {
 	// list of animals at this location currently
 	ArrayList animals = new ArrayList();
 
+	// Pop up variables
+	public Rect windowRect;
+	bool openPopUp = false;
+
 	// Use this for initialization
-	void Start () {
-	
+	void Start () 
+	{
+		windowRect  = new Rect(transform.position.x*10, transform.position.y*10, 120, 50);
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update () 
+	{
+
+	}
+
+	void OnGUI() 
+	{
+		if(openPopUp)
+		{
+			windowRect = GUI.Window(0, windowRect, DoPopUp, "Action?");
+		}
 	}
 
 	void OnMouseDown()
 	{
-		Debug.Log(this);
+		openPopUp=true;
+	}
+
+	void DoPopUp(int windowID) {
+		if (GUI.Button(new Rect(10, 20, 100, 20), "Go Here"))
+		{
+			print("Go to "+this);
+			print(transform.position.x+","+transform.position.y);
+			openPopUp=false;
+		}
 	}
 
 	public void addResource(Resource res)
