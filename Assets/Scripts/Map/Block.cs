@@ -17,12 +17,14 @@ public class Block : MonoBehaviour {
 
 	// Pop up variables
 	public Rect windowRect;
+	public GameDriver gameDriver;
 	bool openPopUp = false;
+	Vector3 mousePos;
 
 	// Use this for initialization
 	void Start () 
 	{
-		windowRect  = new Rect(transform.position.x*10, transform.position.y*10, 120, 50);
+		gameDriver = GameObject.FindObjectOfType<GameDriver>() as GameDriver;
 	}
 	
 	// Update is called once per frame
@@ -35,21 +37,29 @@ public class Block : MonoBehaviour {
 	{
 		if(openPopUp)
 		{
-			windowRect = GUI.Window(0, windowRect, DoPopUp, "Action?");
+			windowRect = GUILayout.Window(0, new Rect(mousePos.x-60, 594-(mousePos.y+25), 120, 50), DoPopUp, "Action?");
 		}
 	}
 
 	void OnMouseDown()
 	{
-		openPopUp=true;
+		if(!gameDriver.popUpOpen)
+		{
+			openPopUp=true;
+			gameDriver.popUpOpen=true;
+			mousePos=Input.mousePosition;
+			print(mousePos.x+","+mousePos.y);
+		}
 	}
 
 	void DoPopUp(int windowID) {
-		if (GUI.Button(new Rect(10, 20, 100, 20), "Go Here"))
+
+		if (GUILayout.Button("Go Here"))
 		{
 			print("Go to "+this);
 			print(transform.position.x+","+transform.position.y);
 			openPopUp=false;
+			gameDriver.popUpOpen=false;
 		}
 	}
 
