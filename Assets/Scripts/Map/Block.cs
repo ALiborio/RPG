@@ -48,7 +48,6 @@ public class Block : MonoBehaviour {
 			openPopUp=true;
 			gameDriver.popUpOpen=true;
 			mousePos=Input.mousePosition;
-			print(mousePos.x+","+mousePos.y);
 		}
 	}
 
@@ -60,6 +59,7 @@ public class Block : MonoBehaviour {
 			print(transform.position.x+","+transform.position.y);
 			openPopUp=false;
 			gameDriver.popUpOpen=false;
+			gameDriver.sendCharTo(transform.position.x,transform.position.y);
 		}
 	}
 

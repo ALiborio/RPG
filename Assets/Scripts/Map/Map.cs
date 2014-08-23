@@ -15,6 +15,8 @@ public class Map : MonoBehaviour{
 	public Block ocean;
 	public Block pond;
 	public Block woods;
+	// The main game driver
+	public GameDriver game;
 
 	// Use this for initialization
 	void Start() {
@@ -38,6 +40,7 @@ public class Map : MonoBehaviour{
 						thisBlock = getNextBlock();
 					}
 				}
+				thisBlock.gameDriver = game;
 				addBlock(i,j,thisBlock);
 			}
 		}
